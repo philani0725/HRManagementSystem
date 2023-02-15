@@ -1,7 +1,5 @@
 package philani.server;
 
-
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.javalin.Javalin;
@@ -26,31 +24,22 @@ public class HRAdminServer {
     private final Javalin appServer;
 
     public static void main(String[] args) {
-        WeShareServer server = new WeShareServer();
+        HRAdminServer server = new HRAdminServer();
         try {
             seedDemoData();
-        } catch (WeShareException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         server.start(5050);
     }
 
-    public WeShareServer() {
-        ServiceRegistry.configure(PersonDAO.class, new PersonDAOImpl());
-        ServiceRegistry.configure(ExpenseDAO.class, new ExpenseDAOImpl());
-        ServiceRegistry.configure(PaymentRequestDAO.class, new PaymentRequestDAOImpl());
-        ServiceRegistry.configure(PaymentDAO.class, new PaymentDAOImpl());
-
+    public HRAdminServer() {
         appServer = Javalin.create(config -> {
             config.registerPlugin(getConfiguredOpenApiPlugin());
             config.addStaticFiles(PUBLIC_DIR, Location.CLASSPATH);
             config.jsonMapper(createGsonMapper());
         }).routes(configureApi());
 
-        appServer.exception(WeShareException.class, (exception, ctx) -> {
-            ctx.json(exception.getMessage());
-            ctx.status(HttpCode.BAD_REQUEST);
-        });
     }
 
     @NotNull
