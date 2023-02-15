@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pangolin">
+    <style media="screen">
+ ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+.navbar {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+.logo {
+align: center;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div>
+    <nav>
+        <div class="menu">
+            <div class="logo">
+
+                <div >
+                    <p >HR Management System</p>
+                    <div class="navbar"></div>
+                    <div class="navbar"></div>
+                    <div class="navbar"></div>
+                </div>
+            </div>
+            <div>
+            <ul>
+                <li><a href="/">Menu</a></li>
+                <li><a href="/"></a></li>
+                <li><a href="/"></a></li>
+                <li><a href="/"></a></li>
+                <li><a href="/"></a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div>
+        <h2>Employees</h2>
+        <table>
+            <tr>
+                <th>Status</th>
+                <td >
+                    <select id="select_status">
+                        <option>Select Status</option>
+                        <option>Active Only</option>
+                        <option>Deactive Only</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td >
+                    <select id="select_department">
+                        <option>Select Department</option>
+                        <option></option>
+                        <option></option>
+                    </select>
+
+                </td>
+            </tr>
+            <tr>
+                <th>Manager</th>
+                <td >
+                    <select id="select_manager">
+                        <option>Select Department</option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <main>
+        <div layout:fragment="contents">
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
