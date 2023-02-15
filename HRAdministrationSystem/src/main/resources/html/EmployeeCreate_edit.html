@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Create / Edit Employee</h2>
+
+<div>
+    <form>
+        <div>
+            <label for="firstname">Name </label><br>
+            <input name="firstname" id="firstname" type="text"
+                   class="form-control" placeholder="Name" autofocus required>
+        </div>
+        <div>
+            <label for="lastname" >Surname</label><br>
+            <input name="lastname" type="text" class="form-control"
+                   id="lastname" placeholder="Surname" required>
+        </div>
+        <div >
+            <label for="phone">Telephone Number</label><br>
+            <input name="phone" type="tect" class="form-control"
+                   id="phone" placeholder="e.g 082111" required>
+        </div>
+        <div >
+            <label for="email">Email address</label><br>
+            <input name="email" type="email" class="form-control"
+                   id="email" placeholder="email" required>
+        </div>
+
+        <div >
+            <label for="manager">Manager</label><br>
+            <select id="manager">
+                <option>Manager 1</option>
+                <option>Manager 2</option>
+            </select>
+
+        </div>
+        <div>
+            <label for="status">Status</label><br>
+            <select id="status">
+                <option>Select Status</option>
+                <option>Active Only</option>
+                <option>Deactivate Only</option>
+            </select>
+        </div>
+        <div>
+            <input id="submit" type="submit" value="Save">
+            <input id="submit" type="submit" value="Cancel">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
