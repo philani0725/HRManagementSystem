@@ -18,18 +18,12 @@ import java.util.Arrays;
 import static io.javalin.apibuilder.ApiBuilder.*;
 
 
-
 public class HRAdminServer {
     private static final String PUBLIC_DIR = "/public";
     private final Javalin appServer;
 
     public static void main(String[] args) {
         HRAdminServer server = new HRAdminServer();
-        try {
-            seedDemoData();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
         server.start(5050);
     }
 
@@ -86,32 +80,6 @@ public class HRAdminServer {
         return new OpenApiPlugin(options);
     }
 
-    private static void seedDemoData() throws WeShareException {
-        Person student1 = new Person("student1@wethinkcode.co.za");
-        Person student2 = new Person("student2@wethinkcode.co.za");
-        Person student3 = new Person("student3@wethinkcode.co.za");
-        for (Person person : Arrays.asList(student1, student2, student3)) {
-            WeShareService.savePerson(person);
-        }
-
-        Expense expense1 = new Expense(student1, "Lunch", amountOf(300), TODAY.minusDays(5));
-        Expense expense2 = new Expense(student1, "Airtime", amountOf(100), YESTERDAY);
-        Expense expense3 = new Expense(student2, "Movies", amountOf(150), TODAY.minusWeeks(1));
-        Expense expense4 = new Expense(student3, "Ice cream", amountOf(50), TODAY.minusDays(3));
-        for (Expense expense : Arrays.asList(expense1, expense2, expense3, expense4)) {
-            WeShareService.saveExpense(expense);
-        }
-
-        PaymentRequest paymentRequest1 = expense1.requestPayment(student2, amountOf(100), YESTERDAY);
-        PaymentRequest paymentRequest2 = expense1.requestPayment(student3, amountOf(100), TOMORROW);
-        for (PaymentRequest paymentRequest : Arrays.asList(paymentRequest1, paymentRequest2)) {
-            WeShareService.savePaymentRequest(paymentRequest);
-        }
-
-        NewPaymentDTO newPaymentDTO = new NewPaymentDTO(paymentRequest1.getExpenseId(),
-                paymentRequest1.getId(), paymentRequest1.getPersonWhoShouldPayBack().getId());
-        WeShareService.payPaymentRequest(newPaymentDTO);
-    }
 
     /**
      * Use GSON for serialisation instead of Jackson
