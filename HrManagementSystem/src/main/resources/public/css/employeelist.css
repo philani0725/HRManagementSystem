@@ -1,0 +1,44 @@
+
+.filter {
+     border-color: black;
+     border-size:2px;
+}
+table {
+  width: 60%;
+  height: 40%;
+  background: grey;
+}
+body {
+background: grey;
+
+}
+
+#filter th {
+  background-color: grey;
+  color: white;
+}
+
+th {
+  background-color: black;
+  color: white;
+}
+ td {
+  text-align: center;
+}
+tr:hover {background-color: light-blue;}
+.centre {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  color:grey
+}
+
+h2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+h {
+  color: grey;
+}

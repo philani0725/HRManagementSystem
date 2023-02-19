@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HR Management System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+</head>
+
+<body>
+
+<div id="nav"></div>
+<div id="app"></div>
+<div id="IDs"></div>
+
+<script id="home-template" type="text/handlebars-template">
+    <link rel="stylesheet" href="css/home.css">
+
+    <div class="img">
+        <div class="center">
+            <div class="title">Welcome To Profile Management System</div>
+            <div class="sub_title">
+                The Profile Management System that allows the admin to Add , Manage the user Profiles.
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="navigation-template" type="text/handlebars-template">
+    <link rel="stylesheet" href="css/nav.css">
+    <p id="userID" hidden>{{id}}</p>
+    <body class="body">
+    <nav class="nav">
+
+
+        <label for="btn" class="icon">
+            <span class="fa fa-bars"></span>
+        </label>
+
+        <ul >
+            <li>
+                <a href="#/employees">Menu</a>
+
+
+                <ul >
+                    <li><a id="employees" href="#/employees"> Employees</a></li>
+                    <li><a id="departments" href="#/departments"> Departments </a></li>
+                    <li>
+                        <a id="create_employee" href="#/newemployee">New Employee </a></li>
+                    <li><a id="creare_department" href="#/newdepartment">New Department </a></li>
+                    <li><a id="Logout" href="/"> Logout </a></li>
+                </ul>
+            </li>
+
+        </ul>
+        <div class="logo">HR Management System</div>
+    </nav>
+    </body>
+
+
+
+</script>
+
+
+<script id="Login-template" type="text/handlebars-template">
+    <link rel="stylesheet" href="css/login.css">
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <form id="login-form">
+        <h3>Log In</h3>
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" autofocus required/>
+        <label for="password">Password</label>
+        <input name="password" id="password" type="password" autofocus required>
+
+        <label for=" "> </label>
+        <input name="submit" type="submit" value="Login" id="login-button"/>
+    </form>
+</script>
+
+<script id="departments-template" type="text/handlebars-template">
+    <link rel="stylesheet" href="css/departmentlist.css">
+
+    <h3>Departments</h3>
+    <div class="filter">
+        <table class="centre">
+            <tr>
+                <th>Status</th>
+                <td >
+                    <select type="text" id="status" name="status">
+                        <option>- Select -</option>
+                        <option value="Active">Active</option>
+                        <option value="Deactivate">Deactivate</option>
+                        <option value="All">All</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button">Filter</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="ep_list">
+        {{#if departments}}
+        <table class="centre">
+            <thead>
+            <tr>
+                <th>Actions</th>
+                <th>Name</th>
+                <th>Manager</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <br/>
+
+            <tbody>
+            {{#each departments}}
+            <tr>
+                <td>
+                    <a id="add_new_department" href="#/newdepartment">Edit</a>
+                    <a href="">Deactivate</a>
+                </td>
+                <td>{{this.NAME}}</td>
+                <td>{{this.manager}}</td>
+                <td>{{this.status}}</td>
+            </tr>
+
+
+            {{/each}}
+            </tbody>
+
+        </table>
+        {{else}}
+        <p> You don't have any departments</p>
+        {{/if}}
+    </div>
+
+
+
+</script>
+
+<script id="employees-template" type="text/handlebars-template">
+    <link rel="stylesheet" href="css/employeelist.css">
+
+        <h3>Employees</h3>
+        <div class="filter">
+            <table class="centre">
+                <tr>
+                    <th>Status</th>
+                    <td >
+                        <select type="text" id="status" name="status">
+                            <option>- Select -</option>
+                            <option value="Active">Active</option>
+                            <option value="Deactivate">Deactivate</option>
+                            <option value="All">All</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td >
+                        <select type="text" id="department" name="department">
+                            <option>- Select -</option>
+                            <option value="Cyber Security"> Cyber Security</option>
+                            <option value="Data Science"> Data Science</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>Manager</th>
+                    <td >
+                        <select type="text" id="manager" name="manager">
+                            <option>- Select -</option>
+                            <option value="Philani">Philani</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button">Filter</button>
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    <div class="ep_list">
+        {{#if employees}}
+        <table class="centre">
+            <thead>
+            <tr>
+                <th>Actions</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Telephone Number</th>
+                <th>Email Address</th>
+                <th>Manager</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <br/>
+
+            <tbody>
+            {{#each employees}}
+            <tr>
+                <td>
+                    <a id="add_new_employee" href="#/newemployee">Edit</a>
+                    <a href="">Deactivate</a>
+                </td>
+                <td>{{this.FIRSTNAME}}</td>
+                <td>{{this.LASTNAME}}</td>
+                <td>{{this.TELNO}}</td>
+                <td>{{this.EMAIL}}</td>
+                <td>{{this.EMPLOYEEMANAGER}}</td>
+                <td>{{this.STATUS}}</td>
+            </tr>
+
+
+            {{/each}}
+
+            </tbody>
+
+
+        </table>
+        {{else}}
+        <p> You don't have any employees</p>
+        {{/if}}
+    </div>
+
+</script>
+
+<script id="departmentId-template" type="text/handlebars-template">
+    <p id="departmentId" hidden>{{employeeId}}</p>
+</script>
+
+<script id="employeeId-template" type="text/handlebars-template">
+    <p id="employeeId" hidden>{{employeeId}}</p>
+</script>
+
+<script id="newemployee-template" type="text/handlebars-template">
+    <link rel="stylesheet" href="css/employee.css">
+    <div class="container">
+        <h1>Create / Edit Employee</h1>
+        <form id="newEmployee-form" class="newEmployee-form">
+            <table>
+                <tr>
+                    <td> <label for="firstname">Name </label><br></td>
+                    <td> <input name="firstname" id="firstname" type="text"
+                                class="form-control" placeholder="Name" autofocus required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="lastname" >Surname</label><br></td>
+                    <td>   <input name="lastname" type="text" class="form-control"
+                                  id="lastname" placeholder="Surname" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="phone">Telephone Number</label><br></td>
+                    <td> <input name="phone" type="text" class="form-control"
+                                        id="phone" placeholder="e.g 082111" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label for="email">Email address</label><br></td>
+                    <td>  <input name="email" type="email" class="form-control"
+                                 id="email" placeholder="email" required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="manager">Manager</label><br></td>
+                    <td>
+                        <select type="text" id="manager" name="manager">
+                        <option>- Select -</option>
+                        <option value="Philani">Philani</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="status">Status</label><br></td>
+                    <td>
+                        <select type="text" id="status" name="status">
+                        <option>- Select -</option>
+                        <option value="Active">Active</option>
+                        <option value="Deactivate">Deactivate</option>
+                        <option value="All">All</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="submit" type="submit" value="Save" class="sub"></td>
+                    <td><input id="submit" type="submit" value="Cancel" class="sub" ><a href="#/employees"></a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</script>
+
+<script id="newdepartment-template" type="text/handlebars-template">
+    <link rel="stylesheet" href="css/department.css">
+
+    <div class="container">
+        <h1>Create / Edit Department</h1>
+        <form id="newDepartment-form" class="newDepartment-form" >
+
+            <table>
+                <tr>
+                    <td><label for="name">Name </label><br></td>
+                    <td><input name="name" id="name" type="text" class="form-control" placeholder="Name" autofocus required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="manager">Manager</label><br></td>
+                    <td>  <select type="text" id="manager" name="manager">
+                        <option>- Select -</option>
+                        <option value="Philani">Philani</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label for="status">Status</label><br></td>
+                    <td><select type="text" id="status" name="status">
+                        <option>- Select -</option>
+                        <option value="Active">Active</option>
+                        <option value="Deactivate">Deactivate</option>
+                        <option value="All">All</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><input id="submit" type="submit" value="Save"></td>
+                    <td><input id="submit" type="submit" value="Cancel"></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-router@1.2.8/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+<script src="/js/app.js"></script>
+</body>
+
+</html>
